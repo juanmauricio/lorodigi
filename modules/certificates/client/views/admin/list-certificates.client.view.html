@@ -1,0 +1,26 @@
+﻿<section>
+  <div class="page-header">
+    <h1>
+      Certificados
+      <a class="btn btn-primary pull-right" data-ui-sref="admin.certificates.create">
+        <i class="glyphicon glyphicon-plus"></i>
+      </a>
+    </h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="certificate in vm.certificates" data-ui-sref="admin.certificates.edit({certidicateId: certificate._id})" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="certificate.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="certificate.user" ng-bind="certificate.user.displayName"></span>
+        <span ng-if="!certificate.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="certificate.title"></h4>
+      <p class="list-group-item-text" data-ng-bind="certificate.content"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="certificate.$resolved && !certificates.length">
+No hay Certificados, <a data-ui-sref="admin.certificates.create">Pudes solicitar uno</a>?
+  </div>
+</section>

@@ -16,6 +16,13 @@
             "request": "attach",
             "name": "Asociar al proceso",
             "port": 5858
+        },
+        {
+            "name": "Launch localhost",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://http://localhost:3000/",
+            "webRoot": "${workspaceRoot}/app/files"
         }
     ]
 }

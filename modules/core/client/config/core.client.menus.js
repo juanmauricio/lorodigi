@@ -38,5 +38,18 @@
       title: 'Manage Social Accounts',
       state: 'settings.accounts'
     });
+
+    menuService.addMenuItem('topbar', {
+      title: 'Cómo funciona?',
+      state: 'info',
+      type: 'dropdown',
+      roles: ['*']
+    });
+
+    menuService.addSubMenuItem('topbar', 'info', {
+      title: 'Cómo funciona?',
+      state: 'info.comofunciona',
+      roles: ['*']
+    });
   }
 }());

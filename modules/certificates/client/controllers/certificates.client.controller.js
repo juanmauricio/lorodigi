@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('certififcates')
+    .module('certificates')
     .controller('CertificatesController', CertificatesController);
 
   CertificatesController.$inject = ['$scope', 'certificateResolve', 'Authentication'];

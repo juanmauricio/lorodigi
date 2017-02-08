@@ -44,7 +44,7 @@
           roles: ['admin']
         },
         resolve: {
-          articleResolve: getCertificate
+          certificateResolve: getCertificate
         }
       });
   }
@@ -57,7 +57,7 @@
     }).$promise;
   }
 
-  newArticle.$inject = ['CertificatesService'];
+  newCertificate.$inject = ['CertificatesService'];
 
   function newCertificate(CertificatesService) {
     return new CertificatesService();

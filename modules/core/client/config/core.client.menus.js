@@ -40,7 +40,7 @@
     });
 
     menuService.addMenuItem('topbar', {
-      title: 'Cómo funciona?',
+      title: 'Sobre nosotros',
       state: 'info',
       type: 'dropdown',
       roles: ['*']
@@ -51,5 +51,24 @@
       state: 'info.comofunciona',
       roles: ['*']
     });
+
+    menuService.addSubMenuItem('topbar', 'info', {
+      title: 'Preguntas frecuentes',
+      state: 'info.preguntasfrecuentes',
+      roles: ['*']
+    });
+
+    menuService.addSubMenuItem('topbar', 'info', {
+      title: 'Contacto',
+      state: 'info.contactanos',
+      roles: ['*']
+    });
+
+        menuService.addSubMenuItem('topbar', 'info', {
+      title: 'info.prueba01',
+      state: 'info.prueba01',
+      roles: ['*']
+    });
+
   }
-}());
+} ());

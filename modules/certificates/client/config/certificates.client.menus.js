@@ -9,16 +9,16 @@
 
   function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
-      title: 'Certificates',
-      state: 'certificates',
+      title: 'Mis certificados',
+      state: 'miscertificados',
       type: 'dropdown',
       roles: ['*']
     });
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'certificates', {
-      title: 'List certificates',
-      state: 'certificates.list',
+      title: 'Ver certificados',
+      state: 'certificados.list',
       roles: ['*']
     });
   }

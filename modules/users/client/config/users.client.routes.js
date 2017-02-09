@@ -79,9 +79,10 @@
         controller: 'AuthenticationController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Signin'
+          pageTitle: 'Ingresar'
         }
       })
+
       .state('password', {
         abstract: true,
         url: '/password',

@@ -48,6 +48,29 @@
           pageTitle: 'Not Found'
         }
       })
+       .state('info', {
+        abstract: true,
+        url: '/info',
+        templateUrl: '/modules/core/client/views/info.client.view.html',
+        controller: 'AuthenticationController',
+        controllerAs: 'vm'
+      })
+
+      .state('info.prueba01', {
+        url: '/prueba01?err',
+        templateUrl: '/modules/users/client/views/authentication/prueba01.client.view.html',
+        controller: 'AuthenticationController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Prueba01'
+        }
+      })
+      .state('info.comofunciona', {
+        url: '/comofunciona',
+        templateUrl: '/modules/core/client/views/comofunciona.client.view.html',
+        controller: 'HomeController',
+        controllerAs: 'vm'
+      })
       .state('bad-request', {
         url: '/bad-request',
         templateUrl: '/modules/core/client/views/400.client.view.html',

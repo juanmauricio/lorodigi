@@ -64,7 +64,7 @@
       roles: ['*']
     });
 
-        menuService.addSubMenuItem('topbar', 'info', {
+    menuService.addSubMenuItem('topbar', 'info', {
       title: 'info.prueba01',
       state: 'info.prueba01',
       roles: ['*']

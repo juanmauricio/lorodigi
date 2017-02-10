@@ -7,7 +7,7 @@
         <br><br>
         <div class="form-group" show-errors>
           <label for="firstName">Nombres</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.credentials.firstName" placeholder="First Name"
+          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.credentials.firstName" placeholder="Nombres"
             required autofocus>
           <div ng-messages="vm.userForm.firstName.$error" role="alert">
             <p class="help-block error-text" ng-message="required">El nombre es requerido.</p>
@@ -15,7 +15,7 @@
         </div>
         <div class="form-group" show-errors>
           <label for="lastName">Apellidos</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.credentials.lastName" placeholder="Last Name"
+          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.credentials.lastName" placeholder="Apellido"
             required>
           <div ng-messages="vm.userForm.lastName.$error" role="alert">
             <p class="help-block error-text" ng-message="required">El apellido es requerido.</p>
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group" show-errors>
           <label for="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" class="form-control" ng-model="vm.credentials.email" placeholder="Email" lowercase
+          <input type="email" id="email" name="email" class="form-control" ng-model="vm.credentials.email" placeholder="correo electrónico" lowercase
             required>
           <div ng-messages="vm.userForm.email.$error" role="alert">
             <p class="help-block error-text" ng-message="required">El correo electrónico es requerido.</p>
@@ -31,24 +31,25 @@
           </div>
         </div>
         <section class="row">
-          <div class="col-md-6 text-center">
+          <div class="col-md-6 text-left">
             <div class="form-group" show-errors>
               <label for="tipoidentificacion">Tipo de identificación</label>
-              <input type="tipoidentificacion" id="tipoidentificacion" name="tipoidentificacion" class="form-control" ng-model="vm.credentials.tipoidentificacion"
-                placeholder="Tipoidentificacion" lowercase required>
+              <select name="repeatSelect" id="repeatSelect" ng-model="vm.documentTypes.model" required>
+            <option ng-repeat="option in vm.documentTypes.availableOptions" value="{{option.id}}">{{option.name}}</option>
+          </select>
               <div ng-messages="vm.userForm.tipoidentificacion.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">El correo electrónico es requerido.</p>
-                <p class="help-block error-text" ng-message="email">El correo es invalido.</p>
+                <p class="help-block error-text" ng-message="required">El <i>tipo de identificación</i> es requerido.</p>
+                <p class="help-block error-text" ng-message="email">El <i>tipo de identificación</i> es invalido.</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 text-center">
+          <div class="col-md-6 text-left">
             <div class="form-group" show-errors>
               <label for="tipoidentificacion">Numero</label>
               <input type="numeroidentificacion" id="numeroidentificacion" name="numeroidentificacion" class="form-control" ng-model="vm.credentials.tipoidentificacion"
-                placeholder="Numeroidentificacion" lowercase required>
+                placeholder="Numero identificación" lowercase required>
               <div ng-messages="vm.userForm.numeroidentificacion.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">El <i>Numero de identificación<i> es requerido.</p>
+                <p class="help-block error-text" ng-message="required">El Numero de identificación es requerido.</p>
             <p class="help-block error-text" ng-message="numeroidentificacion">El <i>Numero de identificación<i> es invalido.</p>
           </div>
         </div>
@@ -60,8 +61,8 @@
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">El nombre de usuario es requerido.</p>
             <p class="help-block error-text" ng-message="pattern">Por favor ingrese un <i>Nombre de usuario</i> valido: 3+
-                  carácteres, non restricted word, los carácteres "_-.", sin signos de punto(.) consecutivos, no puede empezar o terminar con puntos(.)
-                  , letras a-z y numeros 0-9.</p>
+                  carácteres, non restricted word, los carácteres "_-.", sin signos de punto(.) consecutivos, no puede empezar
+                  o terminar con puntos(.) , letras a-z y numeros 0-9.</p>
               </div>
             </div>
             <div class="form-group" show-errors>

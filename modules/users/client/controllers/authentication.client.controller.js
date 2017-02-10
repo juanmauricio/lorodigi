@@ -17,6 +17,16 @@
     vm.callOauthProvider = callOauthProvider;
     vm.usernameRegex = /^(?=[\w.-]+$)(?!.*[._-]{2})(?!\.)(?!.*\.$).{3,34}$/;
 
+    //vm.documentTypes = ["Emil", "Tobias", "Linus"];
+
+    vm.documentTypes = {
+      model: null,
+      availableOptions: [
+        { id: '1', name: 'CC' },
+        { id: '2', name: 'Pasaporte' }
+      ]
+    };
+
     // Get an eventual error defined in the URL query string:
     if ($location.search().err) {
       Notification.error({ message: $location.search().err });
@@ -89,4 +99,4 @@
       Notification.error({ message: response.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Signin Error!', delay: 6000 });
     }
   }
-}());
+} ());

@@ -4,14 +4,16 @@
       <fieldset>
         <div class="form-group" show-errors>
           <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="First Name" required autofocus>
+          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="First Name"
+            required autofocus>
           <div ng-messages="vm.userForm.firstName.$error" role="alert">
             <p class="help-block error-text" ng-message="required">First name is required.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
           <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="Last Name" required>
+          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="Last Name"
+            required>
           <div ng-messages="vm.userForm.lastName.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Last name is required.</p>
           </div>
@@ -26,10 +28,16 @@
         </div>
         <div class="form-group" show-errors>
           <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="Username" lowercase required>
+          <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="Username"
+            lowercase required>
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Username is required.</p>
           </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">Numero documento identidad</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.idNumber" placeholder="Numero documento identidad"
+            lowercase required readonly>
         </div>
         <div class="text-center form-group">
           <button type="submit" class="btn btn-primary">Save Profile</button>

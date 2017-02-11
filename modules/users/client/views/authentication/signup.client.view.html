@@ -33,11 +33,11 @@
         <section class="row">
           <div class="col-md-6 text-left">
             <div class="form-group" show-errors>
-              <label for="tipoidentificacion">Tipo de identificación</label>
-              <select name="repeatSelect" id="repeatSelect" ng-model="vm.documentTypes.model" required>
+              <label for="idType">Tipo de identificación</label>
+              <select name="repeatSelect" id="repeatSelect" ng-model="vm.credentials.idType" id="idType" name="idType" required>
             <option ng-repeat="option in vm.documentTypes.availableOptions" value="{{option.id}}">{{option.name}}</option>
           </select>
-              <div ng-messages="vm.userForm.tipoidentificacion.$error" role="alert">
+              <div ng-messages="vm.userForm.idType.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">El <i>tipo de identificación</i> es requerido.</p>
                 <p class="help-block error-text" ng-message="email">El <i>tipo de identificación</i> es invalido.</p>
               </div>
@@ -45,12 +45,12 @@
           </div>
           <div class="col-md-6 text-left">
             <div class="form-group" show-errors>
-              <label for="tipoidentificacion">Numero</label>
-              <input type="numeroidentificacion" id="numeroidentificacion" name="numeroidentificacion" class="form-control" ng-model="vm.credentials.tipoidentificacion"
+              <label for="idNumber">Numero</label>
+              <input type="numeroidentificacion" id="idNumber" name="idNumber" class="form-control" ng-model="vm.credentials.idNumber"
                 placeholder="Numero identificación" lowercase required>
-              <div ng-messages="vm.userForm.numeroidentificacion.$error" role="alert">
+              <div ng-messages="vm.userForm.idNumber.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">El Numero de identificación es requerido.</p>
-            <p class="help-block error-text" ng-message="numeroidentificacion">El <i>Numero de identificación<i> es invalido.</p>
+            <p class="help-block error-text" ng-message="idNumber">El <i>Numero de identificación<i> es invalido.</p>
           </div>
         </div>
           </div>
@@ -83,7 +83,7 @@
 </uib-progressbar>
 </div>
 <div class="text-center form-group">
-  <button type="submit" class="btn btn-primary">Regisrarse</button> &nbsp; or&nbsp;
+  <button type="submit" class="btn btn-primary">Registrarse</button> &nbsp; or&nbsp;
   <a ui-sref="authentication.signin" class="show-signup">Ingresar</a>
 </div>
 </fieldset>

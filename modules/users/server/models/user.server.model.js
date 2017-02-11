@@ -39,7 +39,7 @@ var validateLocalStrategyEmail = function (email) {
  * - not begin or end with "."
  */
 
-var validateUsername = function(username) {
+var validateUsername = function (username) {
   var usernameRegex = /^(?=[\w.-]+$)(?!.*[._-]{2})(?!\.)(?!.*\.$).{3,34}$/;
   return (
     this.provider !== 'local' ||
@@ -55,13 +55,13 @@ var UserSchema = new Schema({
     type: String,
     trim: true,
     default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your first name']
+    validate: [validateLocalStrategyProperty, 'Por favor ingresa tu nombre']
   },
   lastName: {
     type: String,
     trim: true,
     default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your last name']
+    validate: [validateLocalStrategyProperty, 'Por favor ingresa tu apellido']
   },
   displayName: {
     type: String,
@@ -76,13 +76,21 @@ var UserSchema = new Schema({
     lowercase: true,
     trim: true,
     default: '',
-    validate: [validateLocalStrategyEmail, 'Please fill a valid email address']
+    validate: [validateLocalStrategyEmail, 'Correo electrónico invalido']
+  },
+  idType: {
+    type: String,
+    trim: true
+  },
+  idNumber: {
+    type: String,
+    trim: true
   },
   username: {
     type: String,
-    unique: 'Username already exists',
-    required: 'Please fill in a username',
-    validate: [validateUsername, 'Please enter a valid username: 3+ characters long, non restricted word, characters "_-.", no consecutive dots, does not begin or end with dots, letters a-z and numbers 0-9.'],
+    unique: 'El Nombre de Usuario ya existe',
+    required: 'Por favor ingresa un Nombre de Usuario',
+    validate: [validateUsername, 'Por favor ingresa un nombre de usaurio válido: 3+ characters long, non restricted word, characters "_-.", no consecutive dots, does not begin or end with dots, letters a-z and numbers 0-9.'],
     lowercase: true,
     trim: true
   },
@@ -109,7 +117,7 @@ var UserSchema = new Schema({
       enum: ['user', 'admin']
     }],
     default: ['user'],
-    required: 'Please provide at least one role'
+    required: 'Por favor indica un Rol'
   },
   updated: {
     type: Date

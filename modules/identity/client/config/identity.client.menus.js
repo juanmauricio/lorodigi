@@ -18,7 +18,8 @@
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'identity', {
       title: 'Mi identidad',
-      state: 'identity.miidentidad',
+      state: 'identity.view',
+      url: '/',
       roles: ['*']
     });
   }

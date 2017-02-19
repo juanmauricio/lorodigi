@@ -5,13 +5,16 @@
     .module('identity')
     .controller('IdentityController', IdentityController);
 
-  IdentityController.$inject = ['$scope', 'IdentityResolve', 'Authentication'];
+  IdentityController.$inject = ['$scope', '$state', 'UsersService', 'Authentication'];
 
-  function IdentityController($scope, identity, Authentication) {
+  function IdentityController($scope, $state, UsersService, Authentication) {
     var vm = this;
-
-    vm.identity = identity;
     vm.authentication = Authentication;
+    vm.user = Authentication.user;
+    var user = new UsersService(vm.user);
+
+    //vm.identity = identity;
+    //vm.authentication = Authentication;
 
   }
 }());

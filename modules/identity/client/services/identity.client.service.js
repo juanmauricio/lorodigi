@@ -11,10 +11,10 @@
     var Identity = $resource('/api/identity/:identityId', {
       identityId: '@_id'
     }, {
-      update: {
-        method: 'PUT'
-      }
-    });
+        update: {
+          method: 'PUT'
+        }
+      });
 
     angular.extend(Identity.prototype, {
       createOrUpdate: function () {
@@ -24,6 +24,18 @@
     });
 
     return Identity;
+
+
+    // function GetIdentityScore($resource, $log) {
+    //   var IdentityScore = $resource('/api/score/:identityId', {
+    //     identityId: '@_id'
+    //   }, {
+    //       update: {
+    //         method: 'PUT'
+    //       }
+    //     });
+    // }
+
 
     function createOrUpdate(identity) {
       if (identity._id) {

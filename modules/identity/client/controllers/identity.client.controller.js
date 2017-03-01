@@ -11,7 +11,7 @@
     var vm = this;
     vm.authentication = Authentication;
     vm.user = Authentication.user;
-    var user = new UsersService(vm.user);
+    //var user = new UsersService(vm.user);
 
     //vm.identity = identity;
     //vm.authentication = Authentication;

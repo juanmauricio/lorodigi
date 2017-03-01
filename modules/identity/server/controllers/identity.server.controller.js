@@ -115,3 +115,17 @@ exports.identityByID = function (req, res, next, id) {
     next();
   });
 };
+
+/**
+ * FACEBOOK VARIABLES
+ */
+
+
+/**
+ * Get facebook variables used to calculate score for an specific user.
+ */
+exports.getfacebookvariables = function(req, res) 
+{
+  
+
+}

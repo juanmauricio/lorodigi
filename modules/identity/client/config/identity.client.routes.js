@@ -26,12 +26,25 @@
           roles: ['user', 'admin'],
           pageTitle: 'Administra tu identidad'
         }
-      });
+      })
+      .state('identity.facebookScoreVariables', {
+        url: '',
+        templateUrl: '/modules/identity/client/views/facebookScoreVariables.client.view.html',
+        controller: 'IdentityController',
+        controllerAs: 'vm',
+        resolve: {
+          articleResolve: getFacebookScoreVariables
+        },
+        data: {
+          pageTitle: 'Certificate {{ certificateResolve.title }}'
+        }
+      })
+      ;
   }
 
-  getIdentity.$inject = ['$stateParams', 'IdentityService'];
+  getFacebookScoreVariables.$inject = ['$stateParams', 'IdentityService'];
 
-  function getIdentity($stateParams, IdentityService) {
+  function getFacebookScoreVariables($stateParams, IdentityService) {
     return IdentityService.get({
       identityId: $stateParams.identityId
     }).$promise;

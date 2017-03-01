@@ -8,7 +8,8 @@
   IdentityService.$inject = ['$resource', '$log'];
 
   function IdentityService($resource, $log) {
-    var Identity = $resource('/api/identity/:identityId', {
+
+    var FacebookScoreVariables = $resource('/api/facebook/facebookscorevariables', {
       identityId: '@_id'
     }, {
         update: {
@@ -16,15 +17,23 @@
         }
       });
 
-    angular.extend(Identity.prototype, {
+    // var Identity = $resource('/api/identity/:identityId', {
+    //   identityId: '@_id'
+    // }, {
+    //     update: {
+    //       method: 'PUT'
+    //     }
+    //   });
+
+    angular.extend(FacebookScoreVariables.prototype, {
       createOrUpdate: function () {
-        var identity = this;
-        return createOrUpdate(identity);
+        var facebookScoreVariables = this;
+        return createOrUpdate(facebookScoreVariables);
       }
     });
 
-    return Identity;
-
+    return FacebookScoreVariables;
+    
 
     // function GetIdentityScore($resource, $log) {
     //   var IdentityScore = $resource('/api/score/:identityId', {

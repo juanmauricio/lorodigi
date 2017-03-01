@@ -9,9 +9,11 @@ module.exports = function (config) {
         clientID: config.facebook.clientID,
         clientSecret: config.facebook.clientSecret
     }, function (accessToken, refreshToken, profile, done) {
+
         User.findOrCreate({ facebookId: profile.id }, function (error, user) {
             return done(error, user);
         });
+        
     }
     ));
 }

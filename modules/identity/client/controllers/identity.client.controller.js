@@ -5,9 +5,9 @@
     .module('identity')
     .controller('IdentityController', IdentityController);
 
-  IdentityController.$inject = ['$scope', '$state', 'UsersService', 'Authentication'];
+  IdentityController.$inject = ['$scope', '$state', 'IdentityService', 'Authentication'];
 
-  function IdentityController($scope, $state, UsersService, Authentication) {
+  function IdentityController($scope, $state, IdentityService, Authentication) {
     var vm = this;
     vm.authentication = Authentication;
     vm.user = Authentication.user;

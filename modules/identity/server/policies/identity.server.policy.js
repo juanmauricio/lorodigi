@@ -26,7 +26,12 @@ exports.invokeRolesPolicies = function () {
     allows: [{
       resources: '/api/identities/:identityId',
       permissions: ['get']
-    }]
+    },
+    {
+      resources: '/api/facebook/scorevariables',
+      permissions: ['get']
+    }
+    ]
   }
   ]);
 };

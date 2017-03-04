@@ -5,9 +5,9 @@
     .module('identity')
     .controller('IdentityController', IdentityController);
 
-  IdentityController.$inject = ['$scope', '$state', 'IdentityService', 'Authentication'];
+  IdentityController.$inject = ['$scope', '$state', 'Identity', 'Authentication'];
 
-  function IdentityController($scope, $state, IdentityService, Authentication) {
+  function IdentityController($scope, $state, Identity, Authentication) {
     var vm = this;
     vm.authentication = Authentication;
     vm.user = Authentication.user;
@@ -15,6 +15,13 @@
 
     //vm.identity = identity;
     //vm.authentication = Authentication;
+
+    vm.getFacebookScoreVariables = function(){
+      //service call
+      return Identity.getFacebookScoreVariables();
+
+      // return "variables xxxx";
+    }
 
   }
 }());

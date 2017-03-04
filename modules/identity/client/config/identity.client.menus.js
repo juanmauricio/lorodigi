@@ -22,5 +22,13 @@
       url: '/',
       roles: ['*']
     });
+
+    menuService.addSubMenuItem('topbar', 'identity', {
+      title: 'Obtener identidad Facebook',
+      state: 'identity.facebookScoreVariables',
+      url: '/',
+      roles: ['*']
+    });
+
   }
 }());

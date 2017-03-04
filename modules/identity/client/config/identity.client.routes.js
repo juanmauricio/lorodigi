@@ -28,28 +28,23 @@
         }
       })
       .state('identity.facebookScoreVariables', {
-        url: '',
-        templateUrl: '/modules/identity/client/views/facebookScoreVariables.client.view.html',
+        abstract: false,
+        url: '/facebookScoreVariables',
+        templateUrl: '/modules/identity/client/views/update-FacebookScore.client.view.html',
         controller: 'IdentityController',
         controllerAs: 'vm',
-        resolve: {
-          articleResolve: getFacebookScoreVariables
-        },
         data: {
-          pageTitle: 'Certificate {{ certificateResolve.title }}'
+          roles: ['user', 'admin'],
+          pageTitle: 'Score Facebook'
         }
       })
       ;
   }
 
-  getFacebookScoreVariables.$inject = ['$stateParams', 'IdentityService'];
+  // getFacebookScoreVariables.$inject = ['$stateParams', 'IdentityService'];
 
-  function getFacebookScoreVariables($stateParams, IdentityService) {
-    return IdentityService.get({
-      identityId: $stateParams.identityId
-    }).$promise;
-  }
-
-
+  // function getFacebookScoreVariables($stateParams, IdentityService) {
+  //   return IdentityService.FacebookScoreVariables.$promise;
+  // }
 
 }());

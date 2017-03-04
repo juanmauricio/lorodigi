@@ -9,62 +9,28 @@
 
   function IdentityService($resource, $log) {
 
-    var FacebookScoreVariables = $resource('/api/facebook/facebookscorevariables', {
-      identityId: '@_id'
-    }, {
-        update: {
-          method: 'PUT'
-        }
-      });
 
-    // var Identity = $resource('/api/identity/:identityId', {
-    //   identityId: '@_id'
-    // }, {
-    //     update: {
-    //       method: 'PUT'
-    //     }
-    //   });
-
-    angular.extend(FacebookScoreVariables.prototype, {
-      createOrUpdate: function () {
-        var facebookScoreVariables = this;
-        return createOrUpdate(facebookScoreVariables);
-      }
-    });
-
-    return FacebookScoreVariables;
-    
-
-    // function GetIdentityScore($resource, $log) {
-    //   var IdentityScore = $resource('/api/score/:identityId', {
-    //     identityId: '@_id'
-    //   }, {
-    //       update: {
-    //         method: 'PUT'
-    //       }
-    //     });
-    // }
+    // IdentityService.getFacebookScoreVariables = function () {
+    //   return $resource('/api/facebook/scorevariables').get();
+    // };
 
 
-    function createOrUpdate(identity) {
-      if (identity._id) {
-        return identity.$update(onSuccess, onError);
-      } else {
-        return identity.$save(onSuccess, onError);
-      }
-
-      // Handle successful response
-      function onSuccess(identity) {
-        // Any required internal processing from inside the service, goes here.
-      }
-
-      // Handle error response
-      function onError(errorResponse) {
-        var error = errorResponse.data;
-        // Handle error internally
-        handleError(error);
+    return {
+      getFacebookScoreVariables: function () {
+        return $resource('/api/facebook/scorevariables').get();
+      },
+      sayGoodbye: function (text) {
+        return "Factory says \"Goodbye " + text + "\"";
       }
     }
+
+    // Handle error response
+    function onError(errorResponse) {
+      var error = errorResponse.data;
+      // Handle error internally
+      handleError(error);
+    }
+
 
     function handleError(error) {
       // Log error

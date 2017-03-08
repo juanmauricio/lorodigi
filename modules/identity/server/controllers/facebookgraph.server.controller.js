@@ -32,13 +32,35 @@ exports.getfacebookvariables = function (req, res) {
   function getFacebookVariables(user, config) {
     var access_token = user.additionalProvidersData.facebook.accessToken;
     graph.setAccessToken(access_token);
-    graph.setAppSecret(config.facebook.clientSecret)
+    graph.setAppSecret(config.facebook.clientSecret);
 
-  // pass it in as part of the url
-    graph.post("129954010860422" + "/feed?access_token=" + access_token,{message: "prueba"}, function(err, res) {
-        // returns the post id
-        console.log(res); // { id: xxxxx}
-    })
+    var options = {
+      timeout: 3000
+      , pool: { maxSockets: Infinity }
+      , headers: { connection: "keep-alive" }
+    };
+
+    // var params = { fields: "id,cover,picture,age_range,verified" };
+    var params = { fields: "picture,age_range,name,about,email,birthday,cover,first_name,gender,hometown,is_verified,last_name,public_key,verified,work" };
+
+
+    graph
+      .setOptions(options)
+      .get("129954010860422", params, function (err, res) {
+        console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
+      });
+
+    // pass it in as part of the url
+    // graph.get("https://graph.facebook.com/me",{message: "prueba"}, function(err, res) {
+    //     // returns the post id
+    //     console.log(res); // { id: xxxxx}
+    // })
+
+    // pass it in as part of the url
+    // graph.post("129954010860422" + "/me?access_token=" + access_token,{message: "prueba"}, function(err, res) {
+    //     // returns the post id
+    //     console.log(res); // { id: xxxxx}
+    // })
 
   }
 

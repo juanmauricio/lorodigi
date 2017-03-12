@@ -6,7 +6,8 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  Identity = mongoose.model('Identity'),
+errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   graph = require('fbgraph'),
   config = require(path.resolve('./config/config'));
 
@@ -47,7 +48,36 @@ exports.getfacebookvariables = function (req, res) {
     graph
       .setOptions(options)
       .get("129954010860422", params, function (err, res) {
-        console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
+        if (err) {
+          return next(err);
+        }
+        console.log(res);
+
+        var identity = new Identity();
+identity.score = "0.77";
+identity.email = "correo";
+identity.firstName = res.first_name;
+
+
+identity.socialNetworkIdentities.push({id: "111", socialNetworkName: "facebook"});
+
+
+        //Guarda el resultado en la base de datos
+        identity.save(function (err) {
+          if (err) {
+            return res.status(422).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+
+          }
+        });
+
+        //Score calculation
+        
+
+
+
       });
 
     // pass it in as part of the url

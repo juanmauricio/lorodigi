@@ -16,58 +16,60 @@ var mongoose = require('mongoose'),
  */
 var IdentitySchema = new Schema({
   score: Number,
-  firstName: {
-    type: String,
-    trim: true,
-    default: ''
-  },
-  lastName: {
-    type: String,
-    trim: true,
-    default: ''
-  },
-  userName: {
-    type: String,
-    trim: true
-  },
-  email: {
-    type: String,
-    lowercase: true,
-    trim: true,
-    default: ''
-  },
-  idType: {
-    type: String,
-    trim: true
-  },
-  idNumber: {
-    type: String,
-    trim: true
-  },
-  username: {
-    type: String,
-    lowercase: true,
-    trim: true
-  },
-  password: {
-    type: String,
-    default: ''
-  },
-  salt: {
-    type: String
-  },
-  profileImageURL: {
-    type: String,
-    default: 'modules/users/client/img/profile/default.png'
-  },
-  provider: {
-    type: String
-  },
-  providerData: {},
-  additionalProvidersData: {},
-  created: {
-    type: Date,
-    default: Date.now
+  user: {
+    firstName: {
+      type: String,
+      trim: true,
+      default: ''
+    },
+    lastName: {
+      type: String,
+      trim: true,
+      default: ''
+    },
+    userName: {
+      type: String,
+      trim: true
+    },
+    email: {
+      type: String,
+      lowercase: true,
+      trim: true,
+      default: ''
+    },
+    idType: {
+      type: String,
+      trim: true
+    },
+    idNumber: {
+      type: String,
+      trim: true
+    },
+    username: {
+      type: String,
+      lowercase: true,
+      trim: true
+    },
+    password: {
+      type: String,
+      default: ''
+    },
+    salt: {
+      type: String
+    },
+    profileImageURL: {
+      type: String,
+      default: 'modules/users/client/img/profile/default.png'
+    },
+    provider: {
+      type: String
+    },
+    providerData: {},
+    additionalProvidersData: {},
+    created: {
+      type: Date,
+      default: Date.now
+    }
   },
   socialNetworkIdentities: [{
     //picture,age_range,name,about,email,birthday,cover,first_name,gender,hometown,is_verified,last_name,public_key,verified,work
@@ -78,11 +80,12 @@ var IdentitySchema = new Schema({
     email: String,
     birthday: String,
     cover: String,
+    gender: String,
     is_verified: String,
     public_key: String,
     verified: String,
-    firstName: String,
-    lastName: String,
+    name: String,
+    last_name: String,
     profileURL: String,
     profileImageURL: String,
     Score: Number

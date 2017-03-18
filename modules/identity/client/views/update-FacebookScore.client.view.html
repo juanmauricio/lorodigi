@@ -1,19 +1,24 @@
 <section class="row">
-<div class="container">
-  <div class="row">
-    <div class="col-xs-4">
-      <h3></h3>
-      <p>    Si quieres actualizart tu identidad y generar una nueva identidad basada en tu péfil de facebook... explicación aquí... <br><br>    Recuerda que:<br><br> Una identidad nueva se va a generar y será utlizada para validar tus solicitudes y xxxxx que hagas
-    con tus certificadas digitales.<br></p>
-    </div>
-    <div class="col-xs-4">
-      <h3></h3>
-    </div>
-    <div class="col-xs-4">
-      <h3><button class="btn btn-primary" ng-click="vm.getFacebookScoreVariables()">actualizar identidad facebook</button></h3> 
-      <p>Al hacer clic empiezas el proceso de generación de una nueva identidad basada en tu pérfil de la red social Facebook</p>
-      {{vm.user.displayName}}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4">
+        <h3></h3>
+        <p> Si quieres actualizart tu identidad y generar una nueva identidad basada en tu péfil de facebook... explicación aquí...
+          <br><br> Recuerda que:<br><br> Una identidad nueva se va a generar y será utlizada para validar tus solicitudes
+          y xxxxx que hagas con tus certificadas digitales.<br></p>
+      </div>
+      <div class="col-xs-4">
+        <h3></h3>
+      </div>
+      <div class="col-xs-4">
+        <h3><button class="btn btn-primary" ng-click="vm.getFacebookScoreVariables()">actualizar identidad facebook</button></h3>
+        <p>Al hacer clic empiezas el proceso de generación de una nueva identidad basada en tu pérfil de la red social Facebook</p>
+        {{vm.user.displayName}} - {{vm.identity.score}}
+        <br><br>
+        
+
+        <div ui-view></div>
+      </div>
     </div>
   </div>
-</div>
 </section>

@@ -3,38 +3,53 @@
 
   angular
     .module('identity.services')
-    .factory('Identity', IdentityService);
+    .factory('IdentityService', IdentityService);
 
   IdentityService.$inject = ['$resource', '$log'];
 
   function IdentityService($resource, $log) {
 
+    var Identity = $resource('/api/facebook/scorevariables', {}, {
+      query: {
+        method: 'GET'
+      }
+    }
+    );
+
+    angular.extend(Identity, {
+      getFacebookVariables: function () {
+        return this.query().$promise;
+      }
+    });
+
+    return Identity;
+    
 
     // IdentityService.getFacebookScoreVariables = function () {
     //   return $resource('/api/facebook/scorevariables').get();
     // };
 
 
-    return {
-      getFacebookScoreVariables: function () {
-        return $resource('/api/facebook/scorevariables').get();
-      },
-      sayGoodbye: function (text) {
-        return "Factory says \"Goodbye " + text + "\"";
-      }
-    }
+    // return {
+    //   getFacebookScoreVariables: function () {
+    //     return $resource('/api/facebook/scorevariables').get();
+    //   },
+    //   sayGoodbye: function (text) {
+    //     return "Factory says \"Goodbye " + text + "\"";
+    //   }
+    // }
 
-    // Handle error response
-    function onError(errorResponse) {
-      var error = errorResponse.data;
-      // Handle error internally
-      handleError(error);
-    }
+    // // Handle error response
+    // function onError(errorResponse) {
+    //   var error = errorResponse.data;
+    //   // Handle error internally
+    //   handleError(error);
+    // }
 
 
-    function handleError(error) {
-      // Log error
-      $log.error(error);
-    }
+    // function handleError(error) {
+    //   // Log error
+    //   $log.error(error);
+    // }
   }
 }());

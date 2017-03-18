@@ -7,8 +7,21 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Iniciar programa",
+            "name": "Iniciar LoroDigi",
             "program": "${workspaceRoot}/server.js",
+            "args": [
+                "default"
+            ],
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Iniciar default gulp",
+            "program": "${workspaceRoot}/node_modules/gulp/bin/gulp.js",
+            "args": [
+                "default"
+            ],
             "cwd": "${workspaceRoot}"
         },
         {

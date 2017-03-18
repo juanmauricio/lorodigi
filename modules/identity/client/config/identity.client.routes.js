@@ -38,6 +38,17 @@
           pageTitle: 'Score Facebook'
         }
       })
+      .state('identity.facebookScoreVariables.facebookidentity', {
+        abstract: false,
+        url: '',
+        templateUrl: '/modules/identity/client/views/facebookidentity.client.view.html',
+        controller: 'IdentityController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Score Facebook'
+        }
+      })
       ;
   }
 

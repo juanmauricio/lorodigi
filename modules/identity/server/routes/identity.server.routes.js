@@ -22,7 +22,6 @@ module.exports = function (app) {
   app.route('/api/facebook/scorevariables').all(identityPolicy.isAllowed)
     .get(facebookgraphvariables.getfacebookvariables);
 
-
   // Finish by binding the identity middleware
   app.param('identityId', identities.identityByID);
 

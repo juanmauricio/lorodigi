@@ -7,7 +7,7 @@ var path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Identity = mongoose.model('Identity'),
-errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   graph = require('fbgraph'),
   config = require(path.resolve('./config/config'));
 
@@ -25,7 +25,6 @@ exports.getfacebookvariables = function (req, res) {
     } else if (!user) {
       return next(new Error('Failed to load User ' + id));
     }
-
     getFacebookVariables(user, config);
   });
 
@@ -44,40 +43,41 @@ exports.getfacebookvariables = function (req, res) {
     // var params = { fields: "id,cover,picture,age_range,verified" };
     var params = { fields: "picture,age_range,name,about,email,birthday,cover,first_name,gender,hometown,is_verified,last_name,public_key,verified,work" };
 
-
     graph
       .setOptions(options)
-      .get("129954010860422", params, function (err, res) {
+      .get("129954010860422", params, function (err, resFacebook) {
         if (err) {
           return next(err);
         }
-        console.log(res);
+        console.log(resFacebook);
 
         var identity = new Identity();
-identity.score = "0.77";
-identity.email = "correo";
-identity.firstName = res.first_name;
+        identity.score = "0.77";
+        identity.user.email = user.email;
+        identity.user.displayName = user.displayName;
+        identity.user.userName = user.userName;
+        identity.user.idType = user.idType;
+        identity.user.idNumber = user.idNumber;
+        identity.user.created = user.created;
+        identity.user.profileImageURL = user.profileImageURL;
+        identity.user.password = user.password;
+        identity.user.firstName = user.firstName;
+        identity.user.lastName = user.lastName;
 
-
-identity.socialNetworkIdentities.push({id: "111", socialNetworkName: "facebook"});
-
-
+        identity.socialNetworkIdentities.push({ age_range: resFacebook.age_range.min, gender: resFacebook.gender, id: resFacebook.id, verified: resFacebook.verified, is_verified: resFacebook.is_verified, last_name: resFacebook.last_name, name: resFacebook.first_name, profileImageURL: resFacebook.picture.data.url, socialNetworkName: "facebook" });
         //Guarda el resultado en la base de datos
         identity.save(function (err) {
           if (err) {
-            return res.status(422).send({
+            return res.send({
               message: errorHandler.getErrorMessage(err)
             });
           } else {
-
+            // vm.identity = identity;
+            res.json(identity);
           }
         });
 
         //Score calculation
-        
-
-
-
       });
 
     // pass it in as part of the url

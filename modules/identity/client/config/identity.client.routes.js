@@ -38,15 +38,15 @@
           pageTitle: 'Score Facebook'
         }
       })
-      .state('identity.facebookScoreVariables.facebookidentity', {
+      .state('identity.facebookScoreVariables.updatefacebookidentity', {
         abstract: false,
-        url: '',
+        url: '/facebookScoreVariables',
         templateUrl: '/modules/identity/client/views/facebookidentity.client.view.html',
         controller: 'IdentityController',
         controllerAs: 'vm',
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Score Facebook'
+          pageTitle: 'Puntuación Facebook'
         }
       })
       ;

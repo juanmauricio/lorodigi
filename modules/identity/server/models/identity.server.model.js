@@ -71,25 +71,28 @@ var IdentitySchema = new Schema({
       default: Date.now
     }
   },
-  socialNetworkIdentities: [{
-    //picture,age_range,name,about,email,birthday,cover,first_name,gender,hometown,is_verified,last_name,public_key,verified,work
-    id: String,
-    socialNetworkName: String,
-    age_range: String,
-    about: String,
-    email: String,
-    birthday: String,
-    cover: String,
-    gender: String,
-    is_verified: String,
-    public_key: String,
-    verified: String,
-    name: String,
-    last_name: String,
-    profileURL: String,
-    profileImageURL: String,
-    Score: Number
-  }]
+  socialNetworkIdentities: {}
 });
 
 mongoose.model('Identity', IdentitySchema);
+
+
+// [{
+//     //picture,age_range,name,about,email,birthday,cover,first_name,gender,hometown,is_verified,last_name,public_key,verified,work
+//     id: String,
+//     socialNetworkName: String,
+//     age_range: String,
+//     about: String,
+//     email: String,
+//     birthday: String,
+//     cover: String,
+//     gender: String,
+//     is_verified: String,
+//     public_key: String,
+//     verified: String,
+//     name: String,
+//     last_name: String,
+//     profileURL: String,
+//     profileImageURL: String,
+//     Score: Number
+//   }]

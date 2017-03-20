@@ -1,10 +1,56 @@
-<section>
-    <div class="container">
-        <section class="row">
-            <h1>identidad facebook aqui</h1>
-        </section>
-        <section class="row">
-            Nombre...
-        </section>
+<style>
+    .container-fixed {
+        max-width: 800px;
+        padding: 2;
+    }
+</style>
+
+<div class="jumbotron">
+    <div class="container-fixed">
+        <div class="row">
+            <div class="col-sm-6">foto...</div>
+            <div class="col-sm-6"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Nombre(s):</div>
+            <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].first_name}}</strong></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Apellido(s):</div>
+            <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].last_name}}</strong></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Nombre</div>
+            <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].name}}</strong> </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Sexo</div>
+            <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].gender}}</strong> </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Rango edad</div>
+            <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].age_range.min}}</strong> </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Verificado Facebook</div>
+            <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].verified}}</strong> </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Id Facebook</div>
+            <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].id}}</strong> </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Score</div>
+            <div class="col-sm-6"><strong>{{vm.identity.score}}</strong> </div>
+        </div>
+                <div class="row">
+            <div class="col-sm-6">Pérfil:</div>
+            <div class="col-sm-6"><strong></strong> </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Fecha actualización:</div>
+            <div class="col-sm-6"><strong>{{vm.identity.score}}</strong> </div>
+        </div>
     </div>
-</section>
+</div>
+<button class="btn btn-primary" ng-click="vm.getFacebookScoreVariables()">actualizar identidad facebook</button>

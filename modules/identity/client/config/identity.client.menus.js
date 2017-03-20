@@ -30,5 +30,14 @@
       roles: ['*']
     });
 
+    menuService.addSubMenuItem('topbar', 'identity', {
+      title: 'Actualizar identidad Facebook',
+      state: 'identity.facebookScoreVariables.updatefacebookidentity',
+      url: '/',
+      roles: ['*']
+    });
+
+   
+
   }
 }());

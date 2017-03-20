@@ -64,7 +64,12 @@ exports.getfacebookvariables = function (req, res) {
         identity.user.firstName = user.firstName;
         identity.user.lastName = user.lastName;
 
-        identity.socialNetworkIdentities.push({ age_range: resFacebook.age_range.min, gender: resFacebook.gender, id: resFacebook.id, verified: resFacebook.verified, is_verified: resFacebook.is_verified, last_name: resFacebook.last_name, name: resFacebook.first_name, profileImageURL: resFacebook.picture.data.url, socialNetworkName: "facebook" });
+
+        identity.socialNetworkIdentities = {};
+
+        // identity.socialNetworkIdentities.push({ age_range: resFacebook.age_range.min, gender: resFacebook.gender, id: resFacebook.id, verified: resFacebook.verified, is_verified: resFacebook.is_verified, last_name: resFacebook.last_name, name: resFacebook.first_name, profileImageURL: resFacebook.picture.data.url, socialNetworkName: "facebook" });
+        identity.socialNetworkIdentities["facebook"] = resFacebook;
+
         //Guarda el resultado en la base de datos
         identity.save(function (err) {
           if (err) {

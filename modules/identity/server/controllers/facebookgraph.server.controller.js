@@ -25,11 +25,16 @@ exports.getfacebookvariables = function (req, res) {
     } else if (!user) {
       return next(new Error('Failed to load User ' + id));
     }
-    getFacebookVariables(user, config);
+
+    if (req.params.sourcetype === "server") {
+      getFacebookVariablesServer(user, config);
+    }
+    else if (req.params.sourcetype === "local") {
+      getFacebookVariablesLocal(user, config);
+    }
   });
 
-
-  function getFacebookVariables(user, config) {
+  function getFacebookVariablesServer(user, config) {
     var access_token = user.additionalProvidersData.facebook.accessToken;
     graph.setAccessToken(access_token);
     graph.setAppSecret(config.facebook.clientSecret);
@@ -39,18 +44,14 @@ exports.getfacebookvariables = function (req, res) {
       , pool: { maxSockets: Infinity }
       , headers: { connection: "keep-alive" }
     };
-
-    // var params = { fields: "id,cover,picture,age_range,verified" };
     var params = { fields: "picture,age_range,name,about,email,birthday,cover,first_name,gender,hometown,is_verified,last_name,public_key,verified,work" };
-
     graph
       .setOptions(options)
       .get("129954010860422", params, function (err, resFacebook) {
         if (err) {
           return next(err);
         }
-        console.log(resFacebook);
-
+        //console.log(resFacebook);
         var identity = new Identity();
         identity.score = "0.77";
         identity.user.email = user.email;
@@ -63,11 +64,7 @@ exports.getfacebookvariables = function (req, res) {
         identity.user.password = user.password;
         identity.user.firstName = user.firstName;
         identity.user.lastName = user.lastName;
-
-
         identity.socialNetworkIdentities = {};
-
-        // identity.socialNetworkIdentities.push({ age_range: resFacebook.age_range.min, gender: resFacebook.gender, id: resFacebook.id, verified: resFacebook.verified, is_verified: resFacebook.is_verified, last_name: resFacebook.last_name, name: resFacebook.first_name, profileImageURL: resFacebook.picture.data.url, socialNetworkName: "facebook" });
         identity.socialNetworkIdentities["facebook"] = resFacebook;
 
         //Guarda el resultado en la base de datos
@@ -82,26 +79,13 @@ exports.getfacebookvariables = function (req, res) {
           }
         });
 
-        //Score calculation
       });
-
-    // pass it in as part of the url
-    // graph.get("https://graph.facebook.com/me",{message: "prueba"}, function(err, res) {
-    //     // returns the post id
-    //     console.log(res); // { id: xxxxx}
-    // })
-
-    // pass it in as part of the url
-    // graph.post("129954010860422" + "/me?access_token=" + access_token,{message: "prueba"}, function(err, res) {
-    //     // returns the post id
-    //     console.log(res); // { id: xxxxx}
-    // })
-
   }
 
+  function getFacebookVariablesLocal(user, config) {
 
+    //Identity.findOne()
 
-  // config.facebook.clientID
-  // config.facebook.clientSecret
+    }
 
 }

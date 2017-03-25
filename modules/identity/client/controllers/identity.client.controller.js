@@ -18,8 +18,7 @@
 
     vm.getFacebookScoreVariables = function () {
       //service call
-      IdentityService.getFacebookVariables().then(onGetFacebookVariablesSuccess).catch(onGetFacebookVariablesError);
-      // return "variables xxxx";
+      IdentityService.getFacebookVariables("server").then(onGetFacebookVariablesSuccess).catch(onGetFacebookVariablesError);
     }
 
     function onGetFacebookVariablesSuccess(response) {

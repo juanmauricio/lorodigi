@@ -9,21 +9,23 @@
 
   function IdentityService($resource, $log) {
 
-    var Identity = $resource('/api/facebook/scorevariables', {}, {
-      query: {
-        method: 'GET'
+    var Identity = $resource('/api/facebook/scorevariables/:sourcetype', {
+      sourcetype: '@sourcetype'
+    }, {
+        query: {
+          method: 'GET'
+        }
       }
-    }
     );
 
     angular.extend(Identity, {
-      getFacebookVariables: function () {
-        return this.query().$promise;
+      getFacebookVariables: function (sourcetype1) {
+        return this.query({ sourcetype: sourcetype1 }).$promise;
       }
     });
 
     return Identity;
-    
+
 
     // IdentityService.getFacebookScoreVariables = function () {
     //   return $resource('/api/facebook/scorevariables').get();

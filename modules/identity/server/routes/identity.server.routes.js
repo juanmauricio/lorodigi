@@ -19,7 +19,7 @@ module.exports = function (app) {
     .delete(identities.delete);
 
   // facebook variables route
-  app.route('/api/facebook/scorevariables').all(identityPolicy.isAllowed)
+  app.route('/api/facebook/scorevariables/:sourcetype').all(identityPolicy.isAllowed)
     .get(facebookgraphvariables.getfacebookvariables);
 
   // Finish by binding the identity middleware

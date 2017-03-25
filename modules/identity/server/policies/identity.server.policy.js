@@ -28,7 +28,7 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get']
     },
     {
-      resources: '/api/facebook/scorevariables',
+      resources: '/api/facebook/scorevariables/:sourcetype',
       permissions: ['get']
     }
     ]

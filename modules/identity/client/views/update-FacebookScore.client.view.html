@@ -1,23 +1,22 @@
 <section class="row">
   <div class="container">
     <div class="row">
-      <div class="col-xs-4">
-        <h3></h3>
-        <p> Si quieres actualizart tu identidad y generar una nueva identidad basada en tu péfil de facebook... explicación aquí...
-          <br><br> Recuerda que:<br><br> Una identidad nueva se va a generar y será utlizada para validar tus solicitudes
-          y xxxxx que hagas con tus certificadas digitales.<br></p>
-      </div>
-      <div class="col-xs-4">
-        <h3></h3>
-      </div>
-      <div class="col-xs-4">
-        
-        <p>Al hacer clic empiezas el proceso de generación de una nueva identidad basada en tu pérfil de la red social Facebook</p>
-        <!--{{vm.user.displayName}} - {{vm.identity.score}}-->
-        <br><br>
-        
-
+      <div class="col-xs-6">
+        <br>
         <div ui-view></div>
+      </div>
+      <div class="col-xs-6">
+        <h3></h3>
+        <div class="well"> Si quieres actualizar tu identidad basada en el péfil de facebook debes hacer clic en el botón Actualizar Identidad
+          Facebook. Por favor recuerda:
+          <br><br>
+          <ul>
+            <li>El Score puede variar de acuerdo a los cambios de las variables que utilizamos en nuestro algoritmo para darle un peso a la autenticidad de tu perfil en facebook.</li>
+            <li>El tiempo mínimo entre actualizaciones es de días. Si haces una actualización en este momento debes esperar 5 días para volver a hacerlo.</li>
+            <li>Se generará una identidad totalmente nueva basada en la actualización. El histórico de las identidades generadas se almacena en nuestra base de datos. </li>
+          </ul>
+         <h6>Aviso Legal:</h6>
+        </div>
       </div>
     </div>
   </div>

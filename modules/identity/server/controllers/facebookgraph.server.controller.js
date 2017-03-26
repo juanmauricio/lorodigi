@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
+  identityControler = require(path.resolve('./modules/identity/server/controllers/identity.server.controller')),
   Identity = mongoose.model('Identity'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   graph = require('fbgraph'),
@@ -67,22 +68,41 @@ exports.getfacebookvariables = function (req, res) {
         identity.user.lastName = user.lastName;
         identity.socialNetworkIdentities = {};
         identity.socialNetworkIdentities["facebook"] = resFacebook;
-        var date =  new Date(Date.now())
+        var date = new Date(Date.now())
         identity.socialNetworkIdentities["facebook"].created = date;
 
+        var url = "http://graph.facebook.com/" + resFacebook.id + "/picture?type=square&height=150&width=150";
+
+        identity.socialNetworkIdentities["facebook"].picture.imgdata = identityControler.getImageFromURL(url).then(imgbuffer => saveIdentity(identity, imgbuffer));
+
         //Guarda el resultado en la base de datos
-        identity.save(function (err) {
-          if (err) {
-            return res.send({
-              message: errorHandler.getErrorMessage(err)
-            });
-          } else {
-            // vm.identity = identity;
-            res.json(identity);
-          }
-        });
+        // identity.save(function (err) {
+        //   if (err) {
+        //     return res.send({
+        //       message: errorHandler.getErrorMessage(err)
+        //     });
+        //   } else {
+        //     // vm.identity = identity;
+        //     res.json(identity);
+        //   }
+        // });
 
       });
+  }
+
+  function saveIdentity(identity, imgbuffer) {
+    identity.socialNetworkIdentities["facebook"].picture.imgdata = imgbuffer;
+    identity.save(function (err) {
+      if (err) {
+        return res.send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        // vm.identity = identity;
+        res.json(identity);
+      }
+    });
+
   }
 
   function getFacebookVariablesLocal(user, config) {

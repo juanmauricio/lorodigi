@@ -6,8 +6,20 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Identity = mongoose.model('Identity'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'))
-  request = require('request');
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  request = require('request').defaults({ encoding: null });;
+
+exports.getImageFromURL = function (url) {
+  return new Promise((resolve, reject) => {
+    var data = request.get(url, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        data = new Buffer(body).toString('base64');
+        return resolve(data);
+      };
+      return reject(error)
+    });
+  });
+}
 
 /**
  * Crea una identidad.

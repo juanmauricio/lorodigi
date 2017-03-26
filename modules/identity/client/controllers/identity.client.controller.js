@@ -16,6 +16,10 @@
     //vm.identity = identity;
     //vm.authentication = Authentication;
 
+    vm.init = function () {
+      IdentityService.getFacebookVariables("localdb").then(onGetFacebookVariablesSuccess).catch(onGetFacebookVariablesError);
+    }
+
     vm.getFacebookScoreVariables = function () {
       //service call
       IdentityService.getFacebookVariables("server").then(onGetFacebookVariablesSuccess).catch(onGetFacebookVariablesError);
@@ -24,6 +28,10 @@
     function onGetFacebookVariablesSuccess(response) {
       // If successful we assign the response to the global user model
       vm.identity = response;
+      var formateddate = new Date(vm.identity.socialNetworkIdentities["facebook"].created).toUTCString();
+      vm.identity.facebookProfileURL = "https://www.facebook.com/" + vm.identity.socialNetworkIdentities["facebook"].id;
+      //vm.identity.socialNetworkIdentities["facebook"].created = vm.identity.socialNetworkIdentities["facebook"].created.toUTCString();
+      vm.identity.socialNetworkIdentities["facebook"].created = formateddate;
       Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Variables obtenidas exitosamente!' });
       // And redirect to the previous or home page
       //$state.go($state.previous.state.name || 'home', $state.previous.params);

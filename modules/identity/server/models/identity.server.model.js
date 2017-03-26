@@ -17,6 +17,10 @@ var mongoose = require('mongoose'),
 var IdentitySchema = new Schema({
   score: Number,
   user: {
+    id: {
+      type: Schema.ObjectId,
+      trim: true
+    },
     firstName: {
       type: String,
       trim: true,
@@ -71,7 +75,12 @@ var IdentitySchema = new Schema({
       default: Date.now
     }
   },
-  socialNetworkIdentities: {}
+  socialNetworkIdentities: {
+  },
+  created: {
+    type: Date,
+    default: Date.now
+  },
 });
 
 mongoose.model('Identity', IdentitySchema);

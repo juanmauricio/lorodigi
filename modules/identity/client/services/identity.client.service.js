@@ -1,6 +1,7 @@
 (function () {
   'use strict';
 
+  
   angular
     .module('identity.services')
     .factory('IdentityService', IdentityService);
@@ -23,6 +24,7 @@
         return this.query({ sourcetype: sourcetype1 }).$promise;
       }
     });
+
 
     return Identity;
 

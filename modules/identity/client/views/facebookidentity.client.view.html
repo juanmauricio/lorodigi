@@ -5,8 +5,8 @@
     }
 </style>
 
-<div class="jumbotron">
-    <div class="container-fixed">
+<div class="jumbotron" ng-init="vm.init();">
+    <div class="container-fixed ">
         <div class="row">
             <div class="col-sm-6">foto...</div>
             <div class="col-sm-6"></div>
@@ -39,18 +39,19 @@
             <div class="col-sm-6">Id Facebook</div>
             <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].id}}</strong> </div>
         </div>
+
         <div class="row">
-            <div class="col-sm-6">Score</div>
-            <div class="col-sm-6"><strong>{{vm.identity.score}}</strong> </div>
-        </div>
-                <div class="row">
             <div class="col-sm-6">Pérfil:</div>
-            <div class="col-sm-6"><strong></strong> </div>
+            <div class="col-sm-6"><strong><a ng-href="{{vm.identity.facebookProfileURL}}" target="_blank">Pérfil Facebook</a></strong> </div>
         </div>
         <div class="row">
             <div class="col-sm-6">Fecha actualización:</div>
-            <div class="col-sm-6"><strong>{{vm.identity.score}}</strong> </div>
+            <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].created}}</strong> </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">Score</div>
+        <div class="col-sm-6"><strong>{{vm.identity.score}}</strong> </div>
     </div>
 </div>
 <button class="btn btn-primary" ng-click="vm.getFacebookScoreVariables()">actualizar identidad facebook</button>

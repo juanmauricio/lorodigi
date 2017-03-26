@@ -29,7 +29,7 @@ exports.getfacebookvariables = function (req, res) {
     if (req.params.sourcetype === "server") {
       getFacebookVariablesServer(user, config);
     }
-    else if (req.params.sourcetype === "local") {
+    else if (req.params.sourcetype === "localdb") {
       getFacebookVariablesLocal(user, config);
     }
   });
@@ -54,6 +54,7 @@ exports.getfacebookvariables = function (req, res) {
         //console.log(resFacebook);
         var identity = new Identity();
         identity.score = "0.77";
+        identity.user.id = user._id
         identity.user.email = user.email;
         identity.user.displayName = user.displayName;
         identity.user.userName = user.userName;
@@ -66,6 +67,8 @@ exports.getfacebookvariables = function (req, res) {
         identity.user.lastName = user.lastName;
         identity.socialNetworkIdentities = {};
         identity.socialNetworkIdentities["facebook"] = resFacebook;
+        var date =  new Date(Date.now())
+        identity.socialNetworkIdentities["facebook"].created = date;
 
         //Guarda el resultado en la base de datos
         identity.save(function (err) {
@@ -84,8 +87,11 @@ exports.getfacebookvariables = function (req, res) {
 
   function getFacebookVariablesLocal(user, config) {
 
-    //Identity.findOne()
+    Identity.findOne({ 'user.id': user._id }, {}, { sort: { 'created': -1 } }, function (err, identity) {
+      //console.log(identity);
+      res.json(identity);
+    });
 
-    }
+  }
 
 }

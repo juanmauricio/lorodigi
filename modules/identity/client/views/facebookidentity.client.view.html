@@ -5,14 +5,28 @@
     }
 </style>
 <div class="panel panel-primary" ng-init="vm.init();">
-    <div class="panel-heading">Identidad Facebook</div>
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-4">Identidad Facebook</div>
+            <div class="col-sm-8">
+                <div class="col-sm-2">Score:</div>
+                <div class="col-sm-6">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{vm.identity.score * 100 }}" aria-valuemin="0" aria-valuemax="100"
+                            style="width:{{(vm.identity.score * 100) + '%'}}">{{(vm.identity.score * 100) + '%'}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-12"></div>
         </div>
         <div class="container-fixed ">
             <div class="row">
-                <div class="col-sm-6"><img alt="MEAN.JS" width="75px" height="75px" class="img-responsive text-center" src="/modules/users/client/img/identity/signed.png" /></div>
+                <div class="col-sm-6"><img alt="MEAN.JS" width="75px" height="75px" class="img-responsive text-center" src="/modules/users/client/img/identity/signed.png"
+                    /></div>
                 <div class="col-sm-6"><img data-ng-src="data:image/png;base64,{{vm.identity.socialNetworkIdentities['facebook'].picture.imgdata}}"
                         data-err-src="images/png/avatar.png" /></div>
                 <div class="col-sm-6">
@@ -59,8 +73,14 @@
                 <div class="col-sm-6">Fecha actualización:</div>
                 <div class="col-sm-6"><strong>{{vm.identity.socialNetworkIdentities["facebook"].created}}</strong> </div>
             </div>
+
             <div class="row">
                 <div class="col-sm-12">
+                    <div class="alert alert-danger">
+                        <h6>LoroDigi ha firmado digitalmente la información aquí presentada correspondiente a su identidad en
+                            la red social, constatando que dicha información proviene del perfil facebook al cual usted ingresó
+                            con sus credenciales.</h6>
+                    </div>
                 </div>
             </div>
 
@@ -68,26 +88,6 @@
         </div>
     </div>
 </div>
-
-
-<div class="well">
-    <div class="row">
-        <div class="col-sm-2">Score:</div>
-        <div class="col-sm-4">
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="{{vm.identity.score * 100 }}" aria-valuemin="0" aria-valuemax="100"
-                    style="width:{{(vm.identity.score * 100) + '%'}}">
-                    {{(vm.identity.score * 100) + '%'}}
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="alert alert-info">
     <button class="btn btn-primary" ng-click="vm.getFacebookScoreVariables()">Actualizar Identidad Facebook</button>
-    <br><br>
-    <p>Al hacer clic empiezas el proceso de generación de una nueva identidad basada en tu pérfil de la red social Facebook.</p>
 </div>

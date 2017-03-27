@@ -7,7 +7,9 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Identity = mongoose.model('Identity'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  request = require('request').defaults({ encoding: null });;
+  request = require('request').defaults({ encoding: null }),
+  crypto = require('crypto'),
+  fs = require('fs');
 
 exports.getImageFromURL = function (url) {
   return new Promise((resolve, reject) => {
@@ -20,6 +22,16 @@ exports.getImageFromURL = function (url) {
     });
   });
 }
+
+exports.signIdentity = function (identity) {
+  var pem = fs.readFileSync(path.resolve('./modules/identity/server/files/key.pem'));
+  var key = pem.toString('ascii');
+  var sign = crypto.createSign('RSA-SHA256');
+  sign.update(identity.toString());
+  var sig = sign.sign(key, 'hex');
+  return sig;
+}
+
 
 /**
  * Crea una identidad.

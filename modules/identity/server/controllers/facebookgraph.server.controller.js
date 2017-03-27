@@ -72,13 +72,15 @@ exports.getfacebookvariables = function (req, res) {
         identity.socialNetworkIdentities["facebook"].created = date;
 
         var url = "http://graph.facebook.com/" + resFacebook.id + "/picture?type=square&height=150&width=150";
-
-        identity.socialNetworkIdentities["facebook"].picture.imgdata = identityControler.getImageFromURL(url).then(imgbuffer => saveIdentity(identity, imgbuffer));
+        identity.signature = identityControler.signIdentity(identity);
+        identityControler.getImageFromURL(url).then(imgbuffer => saveIdentity(identity, imgbuffer));
       });
   }
 
   function saveIdentity(identity, imgbuffer) {
+
     identity.socialNetworkIdentities["facebook"].picture.imgdata = imgbuffer;
+
     identity.save(function (err) {
       if (err) {
         return res.send({
@@ -87,13 +89,13 @@ exports.getfacebookvariables = function (req, res) {
       } else {
         // vm.identity = identity;
         res.json(identity);
+
       }
     });
 
   }
 
   function getFacebookVariablesLocal(user, config) {
-
     Identity.findOne({ 'user.id': user._id }, {}, { sort: { 'created': -1 } }, function (err, identity) {
       //console.log(identity);
       res.json(identity);

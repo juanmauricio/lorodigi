@@ -81,6 +81,10 @@ var IdentitySchema = new Schema({
     type: Date,
     default: Date.now
   },
+  signature:{
+    type: String
+  }
+
 });
 
 mongoose.model('Identity', IdentitySchema);
